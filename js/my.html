@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="jquery-3.5.1.min.js"></script>
+    <script>
+        var cook = document.cookie
+        var arrCookie = cook.split("; ");
+        var uid
+        for (var i = 0; i < arrCookie.length; i++) {
+            var arr = arrCookie[i].split("=");
+            //找到名称为userId的cookie，并返回它的值
+            if ("uid" == arr[0]) {
+                uid = arr[1];
+            }
+        }
+        var xhr = new XMLHttpRequest()
+
+        // 2 监听 readyState == 4
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                //接收服务器的响应数据
+                json_str = xhr.responseText
+                console.log(json_str)
+                // console.log(json_str)
+                var data = JSON.parse(json_str)
+                
+                //判断接口返回的状态码
+                if (data.errno > 0) {      //成功
+                    alert('无权访问')
+                    window.location.href = 'login.html'
+                } else {
+                    alert("登录成功")
+                    document.write('用户名：'+data.dta.user_name +"</br>"+ 'ID：'+data.dta.user_id)
+                }
+            }
+        }
+
+        // 3 open
+        xhr.open("get", "my.php?userid="+uid)
+
+        xhr.send()
+
+    </script>
+</body>
+
+</html>

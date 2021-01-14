@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<script src="jquery-3.5.1.min.js"></script>
+<body>
+    <button id="btn1">漠河</button>
+    <button id="btn2">上海</button>
+    <button id="btn3">广州</button>
+    <button id="btn4">三亚</button></br>
+    城市：<input type="text" class="t1"></br>
+    天气：<input type="text" class="t2"></br>
+    温度：<input type="text" class="t3"></br>
+    风力：<input type="text" class="t4">
+    <script>
+         $('#btn1').click(function(){
+            var xhr = new XMLHttpRequest();
+            var tian = 101050703
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var json_str = xhr.responseText
+                    var arr = JSON.parse(xhr.responseText)
+                    $('.t1').val('漠河')
+                    $('.t2').val(arr.now.text)
+                    $('.t3').val(arr.now.temp)
+                    $('.t4').val(arr.now.windDir)
+                }
+            } 
+            xhr.open("GET", 'http://js.2006.com/tian.php?tian='+tian);
+            xhr.send();
+         })
+         $('#btn2').click(function(){
+            var xhr = new XMLHttpRequest();
+            var tian = 101020100
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var json_str = xhr.responseText
+                    var arr = JSON.parse(xhr.responseText)
+                    $('.t1').val('上海')
+                    $('.t2').val(arr.now.text)
+                    $('.t3').val(arr.now.temp)
+                    $('.t4').val(arr.now.windDir)
+                }
+            } 
+            xhr.open("GET", 'http://js.2006.com/tian.php?tian='+tian);
+            xhr.send();
+         })
+         $('#btn3').click(function(){
+            var xhr = new XMLHttpRequest();
+            var tian = 101280101
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var json_str = xhr.responseText
+                    var arr = JSON.parse(xhr.responseText)
+                    $('.t1').val('广州')
+                    $('.t2').val(arr.now.text)
+                    $('.t3').val(arr.now.temp)
+                    $('.t4').val(arr.now.windDir)
+                }
+            } 
+            xhr.open("GET", 'http://js.2006.com/tian.php?tian='+tian);
+            xhr.send();
+         })
+         $('#btn4').click(function(){
+            var xhr = new XMLHttpRequest();
+            var tian = 101310201
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var json_str = xhr.responseText
+                    var arr = JSON.parse(xhr.responseText)
+                    $('.t1').val('三亚')
+                    $('.t2').val(arr.now.text)
+                    $('.t3').val(arr.now.temp)
+                    $('.t4').val(arr.now.windDir)
+                }
+            } 
+            xhr.open("GET", 'http://js.2006.com/tian.php?tian='+tian);
+            xhr.send();
+         })
+    </script>
+</body>
+</html>
